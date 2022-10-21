@@ -1,37 +1,37 @@
 $(function () {
-  const totalLength = 380;
-  const percents = $(".percents");
-  const progressBox = $(".percents .chart");
-  const progressOst = $(".percents").offset().top - 600;
-
+  const progressBox = $(".progress-bar");
+  const progress0st = $(".animation").offset().top - 600;
+  let isAni = false;
   $(window).scroll(function () {
-    if ($(window).scrollTop() >= progressOst) {
-      if (!percents.hasClass("isAni")) {
-        progressAni();
-        percents.addClass("isAni");
-      }
+    if ($(window).scrollTop() >= progress0st && !isAni) {
+      progressAni();
     }
   });
-
   function progressAni() {
     progressBox.each(function () {
-      let $this = $(this);
-      let title = $this.find("h2");
-      let targetNum = title.attr("data-num");
-      let circle = $this.find("circle");
+      let $this = $(this),
+        progressBar = $this.find(".bar"),
+        progressText = $this.find(".rate"),
+        progressRate = progressText.attr("data-rate");
+      progressBar.animate({ width: progressRate + "%" }, 2500);
 
-      $({ rate: 0 }).animate(
-        { rate: targetNum },
-        {
-          duration: 2000,
-          progress: function () {
-            let now = this.rate;
-            let amount = totalLength - (totalLength * now) / 100;
-            title.text(Math.floor(now));
-            circle.css({ strokeDashoffset: amount });
-          },
-        }
-      );
+      let text = function () {
+        $({ rate: 0 }).animate(
+          { rate: progressRate },
+          {
+            duration: 2000,
+            progress: function () {
+              let now = this.rate;
+              progressText.text(Math.floor(now) + "%");
+            },
+            complete: function () {
+              isAni = true;
+              progressBox.addClass();
+            },
+          }
+        );
+      };
+      text();
     });
   }
 });

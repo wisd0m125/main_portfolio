@@ -1,4 +1,6 @@
-.content01,.content02, .content03 {
+.content01,
+.content02,
+.content03 {
   height: 100px;
   font-size: 3em;
   text-align: center;
@@ -29,7 +31,7 @@
   z-index: 5;
   font-size: small;
   color: gray;
-} 
+}
 .percents .chart svg {
   width: 220px;
   height: 220px;
@@ -44,3 +46,41 @@
   stroke: #ffc114;
 }
 
+.progress-bar {
+  position: relative;
+  width: 234px;
+  height: 29px;
+  margin-top: 25px;
+  background: #d9d9d9;
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 100px;
+}
+
+.progress-bar .bar {
+  position: absolute;
+  height: 22px;
+  left: 6px;
+  top: 3px;
+  background: #ff833d;
+  box-shadow: inset 0px 4px 4px #ffffff;
+  border-radius: 100px;
+}
+
+.progress-bar .rate {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  bottom: 0;
+  line-height: 30px;
+  font-size: 1.2em;
+  color: #ffffff;
+}
+
+.hidden {
+  display: block;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}
